@@ -1,0 +1,30 @@
+.post-container {
+  max-width: 1200px;
+  padding: 24px;
+  margin: 20px;
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: green;
+
+  display: flex;
+  gap: 16px;
+}
+
+.post-image {
+  width: 350px;
+
+  border-radius: 50%;
+}
+
+h2 {
+  font-size: 48px;
+  margin-top: 10px;
+}
+
+p {
+  font-size: 1rem;
+  color: #555;
+}

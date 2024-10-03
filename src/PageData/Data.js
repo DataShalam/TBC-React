@@ -1,0 +1,88 @@
+const fighters = [
+  {
+    name: "Merab",
+    surname: "Dvalishvili",
+    email: "merab.dvalishvili@example.com",
+    text: "Merab Dvalishvili, also known as 'The Machine,' is a relentless bantamweight fighter known for his incredible cardio and pressure. He holds the UFC record for the most takedowns in a single fight, making him a dominant force in his division. Merab Dvalishvili, also known as 'The Machine,' is a relentless bantamweight fighter known for his incredible cardio and pressure. He holds the UFC record for the most takedowns in a single fight, making him a dominant force in his division.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/2024-09/DVALISHVILI_MERAB_BELT.png?h=a30e7339&itok=-Ee3R4DV",
+  },
+  {
+    name: "Ilia",
+    surname: "Topuria",
+    email: "ilia.topuria@example.com",
+    text: "Ilia Topuria is an undefeated Georgian-Spanish fighter who competes in the featherweight division. With a background in grappling and a knockout power, Topuria has quickly made a name for himself as one of the most exciting prospects in the UFC. Ilia Topuria is an undefeated Georgian-Spanish fighter who competes in the featherweight division. With a background in grappling and a knockout power, Topuria has quickly made a name for himself as one of the most exciting prospects in the UFC.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/2024-02/TOPURIA_ILIA_BELT-298.png?h=a30e7339&itok=MD8Hzg-p",
+  },
+  {
+    name: "Conor",
+    surname: "McGregor",
+    email: "conor.mcgregor@example.com",
+    text: "Conor McGregor is one of the most iconic fighters in MMA history. Known for his striking ability and brash personality, he has competed in multiple weight classes and is a former two-division UFC champion. Conor McGregor is one of the most iconic fighters in MMA history. Known for his striking ability and brash personality, he has competed in multiple weight classes and is a former two-division UFC champion.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/2021-07/67667%252Fprofile-galery%252Fprofile-picture%252FMCGREGOR_CONOR_07-10.png?h=a30e7339&itok=9J5yEZpN",
+  },
+  {
+    name: "Khabib",
+    surname: "Nurmagomedov",
+    email: "khabib.nurmagomedov@example.com",
+    text: "Khabib Nurmagomedov retired undefeated as one of the greatest fighters in MMA. His grappling and wrestling skills were unmatched, making him a dominant force in the lightweight division. Khabib Nurmagomedov retired undefeated as one of the greatest fighters in MMA. His grappling and wrestling skills were unmatched, making him a dominant force in the lightweight division.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/image/fighter_images/Khabib_Nurmagomedov/1NURMAGOMEDOV_KHABIB.png?itok=QMt9NZgy",
+  },
+  {
+    name: "Jon",
+    surname: "Jones",
+    email: "jon.jones@example.com",
+    text: "Jon Jones is a former light heavyweight champion with a unique fighting style. His reach and creativity in the Octagon have made him one of the most successful fighters of all time. Jon Jones is a former light heavyweight champion with a unique fighting style. His reach and creativity in the Octagon have made him one of the most successful fighters of all time.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/2023-03/JONES_JON_BELT_03_04.png?h=a30e7339&itok=CJxGS6jY",
+  },
+  {
+    name: "Amanda",
+    surname: "Nunes",
+    email: "amanda.nunes@example.com",
+    text: "Amanda Nunes is widely regarded as the greatest female fighter of all time. She has held titles in both the bantamweight and featherweight divisions, dominating her opponents with powerful striking and grappling. Amanda Nunes is widely regarded as the greatest female fighter of all time. She has held titles in both the bantamweight and featherweight divisions, dominating her opponents with powerful striking and grappling.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/2023-06/NUNES_AMANDA_BELTX2_06-10.png?h=a30e7339&itok=7kdkyQTs",
+  },
+  {
+    name: "Israel",
+    surname: "Adesanya",
+    email: "israel.adesanya@example.com",
+    text: "Israel Adesanya is known for his precision striking and incredible fight IQ. As a middleweight champion, he has captivated fans with his exciting stand-up game and fluid movement. Israel Adesanya is known for his precision striking and incredible fight IQ. As a middleweight champion, he has captivated fans with his exciting stand-up game and fluid movement.",
+    src: "https://ufc.com/images/styles/teaser/s3/2024-08/ADESANYA_ISRAEL_08-17.png?h=a30e7339&itok=I1n7gvwB",
+  },
+  {
+    name: "Valentina",
+    surname: "Shevchenko",
+    email: "valentina.shevchenko@example.com",
+    text: "Valentina Shevchenko is one of the most technical fighters in MMA, with an exceptional striking game and elite takedown defense. She has been a dominant force in the women’s flyweight division. Valentina Shevchenko is one of the most technical fighters in MMA, with an exceptional striking game and elite takedown defense. She has been a dominant force in the women’s flyweight division.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/2024-09/SHEVCHENKO_VALENTINA_BELT_03-05.png?h=a30e7339&itok=deWvKtr9",
+  },
+  {
+    name: "Max",
+    surname: "Holloway",
+    email: "max.holloway@example.com",
+    text: "Max Holloway is a former featherweight champion known for his relentless pace and incredible cardio. He is beloved by fans for his exciting fights and never-back-down attitude. Max Holloway is a former featherweight champion known for his relentless pace and incredible cardio. He is beloved by fans for his exciting fights and never-back-down attitude.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/2024-04/HOLLOWAY_MAX_04-13.png?h=a30e7339&itok=Y-GNn5nl",
+  },
+  {
+    name: "Stipe",
+    surname: "Miocic",
+    email: "stipe.miocic@example.com",
+    text: "Stipe Miocic is considered one of the best heavyweights in MMA history. His boxing skills and wrestling base have helped him defend his heavyweight title multiple times. Stipe Miocic is considered one of the best heavyweights in MMA history. His boxing skills and wrestling base have helped him defend his heavyweight title multiple times.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/2023-07/MIOCIC_STIPE_07_07.png?h=a30e7339&itok=ajLmjA6L",
+  },
+  {
+    name: "Rose",
+    surname: "Namajunas",
+    email: "rose.namajunas@example.com",
+    text: "Rose Namajunas is a two-time strawweight champion, known for her well-rounded skills and mental toughness. Her ability to rise to the occasion in big fights has earned her respect from fans and peers alike. Rose Namajunas is a two-time strawweight champion, known for her well-rounded skills and mental toughness. Her ability to rise to the occasion in big fights has earned her respect from fans and peers alike.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/2024-07/NAMAJUNAS_ROSE_07-13.png?h=a30e7339&itok=S4Zrddtj",
+  },
+  {
+    name: "Francis",
+    surname: "Ngannou",
+    email: "francis.ngannou@example.com",
+    text: "Francis Ngannou is one of the most feared heavyweights in the world, with knockout power that few can match. His journey from hardship to becoming UFC heavyweight champion is an inspirational story. Francis Ngannou is one of the most feared heavyweights in the world, with knockout power that few can match. His journey from hardship to becoming UFC heavyweight champion is an inspirational story.",
+    src: "https://dmxg5wxfqgb4u.cloudfront.net/styles/teaser/s3/2021-03/67964%252Fprofile-galery%252Fprofile-picture%252FNGANNOU_FRANCIS_03-27.png?h=a30e7339&itok=P1EweLm-",
+  },
+];
+
+export default fighters;
