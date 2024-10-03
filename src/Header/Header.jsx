@@ -8,7 +8,7 @@ export default function Header() {
       <nav>
         <ul className="nav-list">
           <li>
-            <Link to="/blogs">Blogs</Link>
+            <Link to="/">Blogs</Link>
           </li>
           <li>
             <Link to="/users">Users</Link>

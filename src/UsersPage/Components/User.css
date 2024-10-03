@@ -9,7 +9,7 @@
   border-radius: 12px;
 }
 
-.user-container img {
+.user-container .user-image {
   width: 100%;
   object-fit: cover;
   border-radius: 50%;
@@ -18,10 +18,11 @@
   transition: border-radius 0.25s ease-in-out;
 }
 
-.user-container img:hover {
+.user-container .user-image:hover {
   border-radius: 0;
 }
 
 .user-container h2 {
   font-size: 24px;
+  text-decoration: underline !important;
 }

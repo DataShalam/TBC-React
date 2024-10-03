@@ -4,6 +4,7 @@ import "./App.css";
 import MainPage from "./MainPage/MainPage";
 import Header from "./Header/Header.jsx";
 import UsersPage from "./UsersPage/UsersPage.jsx";
+import UserPage from "./UserPage/UserPage.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/blogs" element={<MainPage />} />
             <Route path="/users" element={<UsersPage />} />
+            <Route path="/users/:userId" element={<UserPage />} />
           </Routes>
         </div>
       </div>
