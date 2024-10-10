@@ -1,9 +1,0 @@
-.blog-container {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto 128px auto;
-}

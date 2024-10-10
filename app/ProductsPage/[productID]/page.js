@@ -1,16 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
-// import NotFoundPage from "../../not-found";
-// import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+
 import "./ProductPage.css";
-// import ReturnButton from "../../components/ReturnButton/ReturnButton";
+import NotFoundPage from "../../NotFound/NotFound.js";
 
 export default function ProductDetail({ params }) {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const { productID } = params;
-  console.log(params);
 
   useEffect(() => {
     async function fetchProduct() {
@@ -33,6 +31,8 @@ export default function ProductDetail({ params }) {
   }, [productID]);
 
   if (loading) return <div className="loading">Loading ...</div>;
+
+  if (!product) return <NotFoundPage />;
 
   return (
     <div className="single-product">

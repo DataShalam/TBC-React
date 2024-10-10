@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
+
 import "./PostPage.css";
+import NotFoundPage from "../../NotFound/NotFound.js";
 
 export default function PostPage({ params }) {
   const [posts, setPosts] = useState(null);
@@ -28,7 +30,9 @@ export default function PostPage({ params }) {
     fetchPosts();
   }, [postID]);
 
-  if (loading) return <div className="loading">Loading...</div>;
+  if (loading) return <div className="loading">Loading ...</div>;
+
+  if (!posts) return <NotFoundPage />;
 
   return (
     <div className="single-Post-Container">
