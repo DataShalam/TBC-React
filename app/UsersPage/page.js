@@ -1,4 +1,3 @@
-import React from "react";
 import "./UsersPage.css";
 
 import User from "./Components/User.jsx";

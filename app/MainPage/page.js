@@ -1,7 +1,10 @@
-import React from "react";
-import Post from "./Components/Post/Post.jsx";
+import Post from "./Components/Post/Post.js";
 import Fighters from "../PageData/Data.js";
 import "./MainPage.css";
+
+// import { createContext } from "react";
+
+// const Context = createContext();
 
 export default function MainPage() {
   return (
