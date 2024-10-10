@@ -10,7 +10,7 @@
 .postHeader {
   font-size: 3.2rem;
   margin-bottom: 1.4rem;
-  text-shadow: 0 0 10px rgba(236, 223, 204, 0.8);
+  text-shadow: 0 0 1rem rgba(236, 223, 204, 0.8);
 
   color: #ecdfcc;
 }

@@ -9,7 +9,9 @@ export default function Header() {
           <li>
             <Link href="/PostsPage">Posts</Link>
           </li>
-          <li>{/* <Link href="/">Users</Link> */}</li>
+          <li>
+            <Link href="/ProductsPage">Products</Link>
+          </li>
         </ul>
       </nav>
     </header>
