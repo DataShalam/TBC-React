@@ -1,9 +1,9 @@
-import MainPage from "./MainPage/page.js";
+import PostsPage from "./PostsPage/page.js";
 
 export default function Home() {
   return (
     <div>
-      <MainPage></MainPage>
+      <PostsPage />
     </div>
   );
 }

@@ -7,11 +7,9 @@ export default function Header() {
       <nav>
         <ul className="nav-list">
           <li>
-            <Link href="/">Blogs</Link>
+            <Link href="/PostsPage">Posts</Link>
           </li>
-          <li>
-            <Link href="/users">Users</Link>
-          </li>
+          <li>{/* <Link href="/">Users</Link> */}</li>
         </ul>
       </nav>
     </header>

@@ -1,5 +1,5 @@
 import Post from "./Components/Post/Post.js";
-import Fighters from "../PageData/Data.js";
+// import Fighters from "../PageData/Data.js";
 import "./MainPage.css";
 
 // import { createContext } from "react";
@@ -9,7 +9,7 @@ import "./MainPage.css";
 export default function MainPage() {
   return (
     <div className="blog-container">
-      {Fighters.map(({ name, surName, email, text, src }, index) => {
+      {/* {Fighters.map(({ name, surName, email, text, src }, index) => {
         const isEven = index % 2 === 0;
         const style = {
           alignSelf: isEven ? "flex-start" : "flex-end",
@@ -27,7 +27,7 @@ export default function MainPage() {
             isReversed={!isEven}
           />
         );
-      })}
+      })} */}
     </div>
   );
 }

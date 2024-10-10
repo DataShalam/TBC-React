@@ -1,0 +1,85 @@
+.single-Post-Container {
+  background-color: #3c3d37;
+  color: #ecdfcc;
+
+  border-radius: 1.4rem;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+  margin-top: 5rem;
+  padding: 1.25rem;
+
+  max-width: 70vw;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1.875rem;
+}
+
+.single-Post-Title {
+  font-size: 2.4rem;
+  font-weight: 700;
+
+  background-color: #697565;
+  padding: 1.4rem;
+  border-radius: 1.2rem;
+}
+
+.single-Post-Body {
+  width: 50%;
+  line-height: 1.8rem;
+
+  font-size: 1.4rem;
+}
+
+.single-Post-Reactions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.8rem;
+
+  background-color: #697565;
+  padding: 0.7rem;
+  border-radius: 1.2rem;
+
+  font-size: 1.4rem;
+}
+
+ion-icon {
+  font-size: 2.8rem;
+}
+
+.single-Post-Like {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.single-Post-Dislike {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.single-Post-Tags {
+  font-weight: 800;
+  font-size: 1.4rem;
+  display: flex;
+  gap: 0.5rem;
+  margin-top: -1.4rem;
+}
+
+.single-Post-Viwes {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #837e76;
+  margin-bottom: 1.125rem;
+}
+
+.loading {
+  text-align: center;
+  color: #ecdfcc;
+  font-size: 2.8rem;
+}
