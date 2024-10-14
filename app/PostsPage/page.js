@@ -1,38 +1,25 @@
-"use client";
-
-import "./PostsPage.css";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
+import "./PostsPage.css";
 
-export default function PostsPage() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("https://dummyjson.com/posts");
-      const data = await res.json();
-
-      setTimeout(() => {
-        setPosts(data.posts);
-        setLoading(false);
-      }, 2000);
-    }
-
-    fetchData();
-  }, []);
+export default async function PostsPage() {
+  const res = await fetch("https://dummyjson.com/posts", {
+    cache: "no-store",
+  });
+  const data = await res.json();
+  const posts = data.posts;
 
   return (
     <div className="postContainer">
       <h1 className="postHeader">Posts</h1>
 
-      {loading ? (
+      {posts?.length === 0 ? (
         <div className="spinner-container">
           <div className="spinner"></div>
         </div>
       ) : (
         <div className="posts">
-          {posts.map((post) => (
+          {posts?.map((post) => (
             <Link
               key={post.id}
               className="postLink"
