@@ -4,20 +4,34 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import "./ProductsPage.css";
+import { useDebounce } from "../hooks/debounce";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState("");
   const [order, setOrder] = useState("asc");
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 1500);
 
-  async function fetchData(sortBy = "", order = "asc") {
+  async function fetchData(sortBy = "", order = "asc", search = "") {
     setLoading(true);
 
     let url = `https://dummyjson.com/products`;
-    if (sortBy) {
-      // falsy value
-      url += `?sortBy=${sortBy}&order=${order}`;
+
+    if (search) {
+      // If searching, update URL
+      url = `https://dummyjson.com/products/search?q=${debouncedSearch}`;
+    }
+
+    if (sortBy && search) {
+      // If searching and sorting append to url
+      url += `&sortBy=${sortBy}&order=${order}`;
+    }
+
+    if (sortBy && !search) {
+      // Only append sorting params if not searching
+      url = `https://dummyjson.com/products?sortBy=${sortBy}&order=${order}`;
     }
 
     const res = await fetch(url);
@@ -28,8 +42,8 @@ export default function ProductsPage() {
   }
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(sortBy, order, debouncedSearch);
+  }, [debouncedSearch]);
 
   function handleSortChange(e) {
     const selectedSortBy = e.target.value;
@@ -62,21 +76,32 @@ export default function ProductsPage() {
     setSortBy(sortByField);
     setOrder(sortOrder);
 
-    fetchData(sortByField, sortOrder);
+    fetchData(sortByField, sortOrder, search);
   }
 
   return (
     <div className="productContainer">
       <h1 className="postHeader">Products</h1>
+      <div className="product-filters">
+        <div className="sort-container">
+          <select className="sortingButtons" onChange={handleSortChange}>
+            <option value="">(Select Option)</option>
+            <option value="price-asc">Sort by Price &uarr;</option>
+            <option value="title-asc">Sort by Name &uarr;</option>
+            <option value="price-desc">Sort by Price &darr;</option>
+            <option value="title-desc">Sort by Name &darr;</option>
+          </select>
+        </div>
 
-      <div className="sort-container">
-        <select className="sortingButtons" onChange={handleSortChange}>
-          <option value="">(Select Sorting Option)</option>
-          <option value="price-asc">Sort by Price &uarr;</option>
-          <option value="title-asc">Sort by Name &uarr;</option>
-          <option value="price-desc">Sort by Price &darr;</option>
-          <option value="title-desc">Sort by Name &darr;</option>
-        </select>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="search-input"
+          />
+        </div>
       </div>
 
       {loading ? (
@@ -85,22 +110,26 @@ export default function ProductsPage() {
         </div>
       ) : (
         <div className="products">
-          {products.map((item) => (
-            <div key={item.id} className="product">
-              <Link className="productLink" href={`/ProductsPage/${item.id}`}>
-                <img
-                  src={item.thumbnail}
-                  alt={item.title}
-                  className="product-image"
-                />
-                <div className="product-info">
-                  <h2 className="product-title">{item.title}</h2>
-                  <p className="product-description">{item.description}</p>
-                  <p className="product-price">${item.price}</p>
-                </div>
-              </Link>
-            </div>
-          ))}
+          {products.length > 0 ? (
+            products.map((item) => (
+              <div key={item.id} className="product">
+                <Link className="productLink" href={`/ProductsPage/${item.id}`}>
+                  <img
+                    src={item.thumbnail}
+                    alt={item.title}
+                    className="product-image"
+                  />
+                  <div className="product-info">
+                    <h2 className="product-title">{item.title}</h2>
+                    <p className="product-description">{item.description}</p>
+                    <p className="product-price">${item.price}</p>
+                  </div>
+                </Link>
+              </div>
+            ))
+          ) : (
+            <p>No products found.</p>
+          )}
         </div>
       )}
     </div>

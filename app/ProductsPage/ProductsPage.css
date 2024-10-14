@@ -109,34 +109,71 @@
   }
 }
 
-/* SORTING */
-.sort-container {
-  display: flex;
-  justify-content: flex-end;
+.product-filters {
+  padding: 1.4rem;
+  border-radius: 1.4rem;
+  width: 93rem;
+  background-color: #3c3d37;
+
   margin-bottom: 1rem;
 
-  align-self: flex-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+/* Select element for sorting */
 .sortingButtons {
-  padding: 0.7rem 1.4rem;
   font-size: 1.2rem;
-  border-radius: 0.8rem;
-  border: 0.5rem solid #3c3d37;
   background-color: #697565;
   color: #ecdfcc;
+  border: none;
+
+  border-radius: 0.8rem;
+  padding: 0.7rem 1.4rem;
+
   cursor: pointer;
   outline: none;
+
   transition: all 0.3s ease;
 }
 
 .sortingButtons:focus,
 .sortingButtons:hover {
-  border-color: #282825;
+  border-color: none;
   background-color: #454b43;
 }
 
 .sortingButtons:active {
+  border-color: none;
+
+  background-color: #454b43;
+  color: #fff7ea;
+}
+
+/* Input element for Searching */
+.search-input {
+  padding: 0.7rem 1.4rem;
+  border-radius: 0.8rem;
+  border: none;
+
+  font-size: 1.2rem;
+  background-color: #697565;
+  color: #ecdfcc;
+
+  outline: none;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.search-input:focus,
+.search-input:hover {
+  border-color: #282825;
+  background-color: #454b43;
+}
+
+.search-input:active {
   border-color: #282825;
   background-color: #454b43;
   color: #fff7ea;
