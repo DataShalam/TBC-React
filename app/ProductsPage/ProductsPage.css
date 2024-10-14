@@ -17,7 +17,7 @@
 
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(3, 30rem);
   gap: 30px;
   cursor: pointer;
 }
@@ -107,4 +107,37 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* SORTING */
+.sort-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+
+  align-self: flex-start;
+}
+
+.sortingButtons {
+  padding: 0.7rem 1.4rem;
+  font-size: 1.2rem;
+  border-radius: 0.8rem;
+  border: 0.5rem solid #3c3d37;
+  background-color: #697565;
+  color: #ecdfcc;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.sortingButtons:focus,
+.sortingButtons:hover {
+  border-color: #282825;
+  background-color: #454b43;
+}
+
+.sortingButtons:active {
+  border-color: #282825;
+  background-color: #454b43;
+  color: #fff7ea;
 }
