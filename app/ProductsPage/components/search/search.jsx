@@ -11,11 +11,18 @@ export default function SearchComponent() {
   const router = useRouter();
 
   useEffect(() => {
+    const newParams = new URLSearchParams(window.location.search);
+
     if (debouncedSearch) {
-      router.push(`/ProductsPage?q=${debouncedSearch}`);
+      newParams.set("q", debouncedSearch);
     } else {
-      router.push(`/ProductsPage`);
+      newParams.delete("q");
     }
+
+    const sortBy = newParams.get("sortBy");
+    const order = newParams.get("order");
+
+    router.push(`/ProductsPage?${newParams.toString()}`);
   }, [debouncedSearch, router]);
 
   return (

@@ -1,7 +1,8 @@
 "use client";
+
 import "./sort.css";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function SortComponent() {
   const [sortBy, setSortBy] = useState("");
@@ -49,7 +50,7 @@ export default function SortComponent() {
       newParams.delete("order");
     }
 
-    // Update the URL without refreshing the page
+    const searchTerm = newParams.get("q");
     router.push(`/ProductsPage?${newParams.toString()}`);
   }
 

@@ -5,7 +5,6 @@ import "./ProductsPage.css";
 import SortComponent from "./components/sort/sort.jsx";
 import SearchComponent from "./components/search/search.jsx";
 import LoaderComponent from "./components/loader/laoder.jsx";
-import { useRouteLoaderData } from "react-router-dom";
 
 export default async function ProductsPage({ searchParams }) {
   const searchQuery = searchParams.q || "";
@@ -13,14 +12,14 @@ export default async function ProductsPage({ searchParams }) {
   const order = searchParams.order || "asc";
 
   let url = "https://dummyjson.com/products";
-  if (searchQuery) {
+  if (!sortBy && searchQuery) {
     url = `https://dummyjson.com/products/search?q=${searchQuery}`;
   }
   if (sortBy && !searchQuery) {
     url += `?sortBy=${sortBy}&order=${order}`;
   }
   if (sortBy && searchQuery) {
-    url += `&sortBy=${sortBy}&order=${order}`;
+    url = `https://dummyjson.com/products/search?q=${searchQuery}&sortBy=${sortBy}&order=${order}`;
   }
 
   const res = await fetch(url, { cache: "no-store" });
