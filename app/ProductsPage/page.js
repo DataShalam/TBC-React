@@ -1,113 +1,41 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import "./ProductsPage.css";
-import { useDebounce } from "../hooks/debounce";
 
-export default function ProductsPage() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState("");
-  const [order, setOrder] = useState("asc");
-  const [search, setSearch] = useState("");
-  const debouncedSearch = useDebounce(search, 1500);
+import SortComponent from "./components/sort/sort.jsx";
+import SearchComponent from "./components/search/search.jsx";
+import LoaderComponent from "./components/loader/laoder.jsx";
+import { useRouteLoaderData } from "react-router-dom";
 
-  async function fetchData(sortBy = "", order = "asc", search = "") {
-    setLoading(true);
+export default async function ProductsPage({ searchParams }) {
+  const searchQuery = searchParams.q || "";
+  const sortBy = searchParams.sortBy || "";
+  const order = searchParams.order || "asc";
 
-    let url = `https://dummyjson.com/products`;
-
-    if (search) {
-      // If searching, update URL
-      url = `https://dummyjson.com/products/search?q=${debouncedSearch}`;
-    }
-
-    if (sortBy && search) {
-      // If searching and sorting append to url
-      url += `&sortBy=${sortBy}&order=${order}`;
-    }
-
-    if (sortBy && !search) {
-      // Only append sorting params if not searching
-      url = `https://dummyjson.com/products?sortBy=${sortBy}&order=${order}`;
-    }
-
-    const res = await fetch(url);
-    const data = await res.json();
-
-    setProducts(data.products);
-    setLoading(false);
+  let url = "https://dummyjson.com/products";
+  if (searchQuery) {
+    url = `https://dummyjson.com/products/search?q=${searchQuery}`;
+  }
+  if (sortBy && !searchQuery) {
+    url += `?sortBy=${sortBy}&order=${order}`;
+  }
+  if (sortBy && searchQuery) {
+    url += `&sortBy=${sortBy}&order=${order}`;
   }
 
-  useEffect(() => {
-    fetchData(sortBy, order, debouncedSearch);
-  }, [debouncedSearch]);
-
-  function handleSortChange(e) {
-    const selectedSortBy = e.target.value;
-    let sortByField = "";
-    let sortOrder = "";
-
-    switch (selectedSortBy) {
-      case "price-asc":
-        sortByField = "price";
-        sortOrder = "asc";
-        break;
-      case "price-desc":
-        sortByField = "price";
-        sortOrder = "desc";
-        break;
-      case "title-asc":
-        sortByField = "title";
-        sortOrder = "asc";
-        break;
-      case "title-desc":
-        sortByField = "title";
-        sortOrder = "desc";
-        break;
-      default:
-        sortByField = "";
-        sortOrder = "asc";
-        break;
-    }
-
-    setSortBy(sortByField);
-    setOrder(sortOrder);
-
-    fetchData(sortByField, sortOrder, search);
-  }
+  const res = await fetch(url, { cache: "no-store" });
+  const data = await res.json();
+  const products = data.products || [];
 
   return (
     <div className="productContainer">
       <h1 className="postHeader">Products</h1>
       <div className="product-filters">
-        <div className="sort-container">
-          <select className="sortingButtons" onChange={handleSortChange}>
-            <option value="">(Select Option)</option>
-            <option value="price-asc">Sort by Price &uarr;</option>
-            <option value="title-asc">Sort by Name &uarr;</option>
-            <option value="price-desc">Sort by Price &darr;</option>
-            <option value="title-desc">Sort by Name &darr;</option>
-          </select>
-        </div>
-
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="search-input"
-          />
-        </div>
+        <SortComponent />
+        <SearchComponent />
       </div>
-
-      {loading ? (
-        <div className="spinner-container">
-          <div className="spinner"></div>
-        </div>
+      {products.length === 0 ? (
+        <LoaderComponent />
       ) : (
         <div className="products">
           {products.length > 0 ? (

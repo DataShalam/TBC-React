@@ -1,0 +1,27 @@
+.sortingButtons {
+  font-size: 1.2rem;
+  background-color: #697565;
+  color: #ecdfcc;
+  border: none;
+
+  border-radius: 0.8rem;
+  padding: 0.7rem 1.4rem;
+
+  cursor: pointer;
+  outline: none;
+
+  transition: all 0.3s ease;
+}
+
+.sortingButtons:focus,
+.sortingButtons:hover {
+  border-color: none;
+  background-color: #454b43;
+}
+
+.sortingButtons:active {
+  border-color: none;
+
+  background-color: #454b43;
+  color: #fff7ea;
+}
