@@ -1,7 +1,7 @@
 "use client";
 
 import "./search.css";
-import { useDebounce } from "../../../hooks/debounce.js";
+import { useDebounce } from "../../../../hooks/debounce.js";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 

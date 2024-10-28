@@ -1,8 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: "./dist", // Changes the build output directory to `./dist/`.
   images: {
-    domains: ["dummyjson.com"],
+    domains: [
+      "cdn.dummyjson.com",
+      "t3.ftcdn.net",
+      "cdn1.iconfinder.com",
+      "dummyjson.com",
+    ], // Add the hostname here
+  },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/signIn",
+        permanent: true,
+      },
+    ];
   },
 };
 

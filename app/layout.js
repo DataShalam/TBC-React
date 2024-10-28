@@ -1,5 +1,7 @@
 import "./globals.css";
-import Header from "./Header/Header.js";
+import Header from "./components/Header/Header.js";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,8 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <div id="root">
-          <Header />
-          {children}
+          <Suspense fallback={<Loading />}>{children}</Suspense>
         </div>
         <script
           type="module"

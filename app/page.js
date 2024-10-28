@@ -1,4 +1,4 @@
-import PostsPage from "./PostsPage/page.js";
+import PostsPage from "./(authPages)/PostsPage/page.js";
 
 export default function Home() {
   return (
