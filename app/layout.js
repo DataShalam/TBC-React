@@ -1,5 +1,4 @@
 import "./globals.css";
-import Header from "./components/Header/Header.js";
 import { Suspense } from "react";
 import Loading from "./loading";
 
