@@ -51,7 +51,7 @@ export default function SortComponent() {
     }
 
     const searchTerm = newParams.get("q");
-    router.push(`/ProductsPage?${newParams.toString()}`);
+    router.push(`/productsPage?${newParams.toString()}`);
   }
 
   return (

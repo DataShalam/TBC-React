@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import "./PostPage.css";
-import NotFoundPage from "../../NotFound/NotFound.js";
+import NotFoundPage from "../../../components/NotFound/NotFound.js";
 
 export default async function PostPage({ params }) {
   const { postID } = params;

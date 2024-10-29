@@ -1,0 +1,15 @@
+.delete-product-button {
+  background-color: #697565;
+  border: none;
+  font-size: 1.2rem;
+  color: #ecdfcc;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+
+  cursor: pointer;
+  transition: background-color 150ms ease-in;
+}
+
+.delete-product-button:hover {
+  background-color: #4e584a;
+}

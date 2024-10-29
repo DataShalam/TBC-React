@@ -14,7 +14,7 @@ export default function PublicLayout({ children }) {
       const session = await sessionStatus();
 
       if (session === true) {
-        router.push("/profile");
+        router.push("/home");
       } else {
         setLoading(false);
       }

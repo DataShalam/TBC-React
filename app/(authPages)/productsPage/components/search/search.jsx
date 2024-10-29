@@ -22,7 +22,7 @@ export default function SearchComponent() {
     const sortBy = newParams.get("sortBy");
     const order = newParams.get("order");
 
-    router.push(`/ProductsPage?${newParams.toString()}`);
+    router.push(`/productsPage?${newParams.toString()}`);
   }, [debouncedSearch, router]);
 
   return (

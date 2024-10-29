@@ -1,0 +1,97 @@
+.add-button-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.add-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ecdfcc;
+  background-color: #697565;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #596b59;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.form-modal {
+  background-color: #3c3d37;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1001;
+}
+
+.form-modal input[type="text"],
+.form-modal input[type="number"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.form-modal input[type="text"]:focus,
+.form-modal input[type="number"]:focus {
+  border-color: #697565;
+}
+
+.form-modal button[type="submit"] {
+  background-color: #697565;
+  color: #ffffff;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.form-modal button[type="submit"]:hover {
+  background-color: #596b59;
+}
+
+.form-modal button[type="button"] {
+  background-color: #b94e48;
+  color: #ffffff;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.form-modal button[type="button"]:hover {
+  background-color: #a43e3b;
+}
