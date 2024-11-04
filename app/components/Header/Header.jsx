@@ -11,7 +11,7 @@ export default function Header() {
     <header className="p-3 mb-16 text-center border-b-2 border-light-navigation-border dark:border-dark-navigation-border">
       <nav className="flex justify-between mx-10 my-0">
         <ul className={unorderedList}>
-          <li className={unorderedListItem}>
+          <li className={`${unorderedListItem} uppercase`}>
             <Link href="/home">Home</Link>
           </li>
         </ul>
