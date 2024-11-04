@@ -12,15 +12,15 @@ export default function ThemeToggle() {
   };
 
   return (
-    <div className="p-2 mt-4">
-      <label htmlFor="theme-select" className="mr-2 text-lg font-semibold">
+    <div className="flex items-center">
+      <label htmlFor="theme-select" className="mr-2 text-xl font-semibold">
         Theme:
       </label>
       <select
         id="theme-select"
         value={theme}
         onChange={handleChange}
-        className="p-2 rounded bg-gray-300 dark:bg-gray-700 dark:text-gray-200"
+        className="p-2 rounded-md bg-light-navigation-border dark:bg-dark-navigation-border text-light dark:text-dark"
       >
         <option value="light">Light</option>
         <option value="dark">Dark</option>
