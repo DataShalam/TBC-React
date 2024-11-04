@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import styles from "../globals.css";
 import { sessionStatus } from "../components/utils/session.js";
 import Header from "../components/Header/Header.jsx";
+import { ThemeProvider } from "../lib/ThemeProvider.js";
 
 export default function AuthLayout({ children }) {
   const router = useRouter();
@@ -27,8 +28,10 @@ export default function AuthLayout({ children }) {
 
   return (
     <div className={styles.layoutContainer}>
-      <Header />
-      {children}
+      <ThemeProvider>
+        <Header />
+        {children}
+      </ThemeProvider>
     </div>
   );
 }

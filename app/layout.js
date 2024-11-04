@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Suspense } from "react";
+import { ThemeProvider } from "./lib/ThemeProvider";
 import Loading from "./loading";
 
 export const metadata = {
@@ -10,9 +11,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-light-main dark:bg-dark-main">
         <div id="root">
-          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <ThemeProvider>
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </ThemeProvider>
         </div>
         <script
           type="module"

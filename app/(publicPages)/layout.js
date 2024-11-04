@@ -1,9 +1,10 @@
 "use client";
 
+import "../globals.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "../globals.css";
 import { sessionStatus } from "../components/utils/session.js";
+import { ThemeProvider } from "../lib/ThemeProvider.js";
 
 export default function PublicLayout({ children }) {
   const router = useRouter();
@@ -27,5 +28,9 @@ export default function PublicLayout({ children }) {
     return <div>Loading...</div>;
   }
 
-  return <div className={styles.layoutContainer}>{children}</div>;
+  return (
+    <div>
+      <ThemeProvider>{children}</ThemeProvider>
+    </div>
+  );
 }

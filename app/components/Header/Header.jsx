@@ -1,6 +1,7 @@
 import "./Header.css";
 import Link from "next/link";
 import { signOut } from "../../lib/actions.js";
+import ThemeToggle from "../ThemeToggle/ThemeToggle.jsx";
 
 export default function Header() {
   return (
@@ -28,6 +29,9 @@ export default function Header() {
           <li></li>
         </ul>
         <ul className="nav-list profile-signout">
+          <li>
+            <ThemeToggle />
+          </li>
           <li>
             <Link href="/profile">
               <ion-icon name="accessibility-outline"></ion-icon>
