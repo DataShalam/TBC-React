@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import "./DeleteProduct.css";
 
 export default function DeleteProduct({ productId }) {
   const router = useRouter();
@@ -26,7 +25,10 @@ export default function DeleteProduct({ productId }) {
   };
 
   return (
-    <button onClick={handleDelete} className="delete-product-button">
+    <button
+      onClick={handleDelete}
+      className="text-base py-2 px-3 cursor-pointer rounded-md bg-red-500 hover:bg-red-700  transition"
+    >
       Delete Product
     </button>
   );

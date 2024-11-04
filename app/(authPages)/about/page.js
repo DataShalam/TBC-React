@@ -1,14 +1,13 @@
 import React from "react";
-import "./about.css";
 
 export default function About() {
   return (
-    <main className="about-container">
-      <section className="title-wrapper">
-        <h1 className="title">About us</h1>
+    <main className="w-[50rem] min-h[40rem] p-12 rounded-2xl my-0 mx-auto text-light dark:text-dark bg-light-card bg-dark-card">
+      <section className="p-6 rounded-xl mb-9 bg-light-heading bg-dark-heading">
+        <h1 className="text-5xl text-center">About us</h1>
       </section>
-      <section className="description-wrapper">
-        <p className="description">
+      <section className="">
+        <p className="text-2xl">
           Welcome to OmniMarket – your trusted destination for quality products
           at affordable prices. We’re a small, passionate team dedicated to
           bringing you the best in fashion, electronics, beauty, carefully

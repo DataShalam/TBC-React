@@ -1,6 +1,5 @@
 "use client";
 
-import "./ProductsPage.css";
 import { useEffect, useState } from "react";
 
 import SortComponent from "./components/sort/sort.jsx";
@@ -62,9 +61,11 @@ export default async function ProductsPage({ searchParams }) {
   }, [search, order]);
 
   return (
-    <div className="productContainer">
-      <h1 className="postHeader">Products</h1>
-      <div className="product-filters">
+    <div className="flex flex-col items-center gap-6 mx-auto mt-0 mb-24">
+      <h1 className="text-6xl mb-5 text-light dark:text-dark drop-shadow-[0_0_1rem_rgba(236,223,204,0.8)]">
+        Products
+      </h1>
+      <div className="flex justify-between items-center w-[93rem] rounded-xl p-4 mb-4 bg-light-card dark:bg-dark-card">
         <SortComponent />
         <AddProduct
           products={products}
@@ -75,7 +76,7 @@ export default async function ProductsPage({ searchParams }) {
         <SearchComponent />
       </div>
 
-      <div className="products">
+      <div className="grid grid-cols-3 gap-7 cursor-pointer">
         {products.length > 0 ? (
           products.map((item) => <Product item={item} />)
         ) : (

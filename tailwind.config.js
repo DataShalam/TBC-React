@@ -10,18 +10,18 @@ module.exports = {
     extend: {
       colors: {
         // Light theme colors
-        "light-main": "#DFF2EB",
-        "light-card": "#B9E5E8",
-        "light-heading": "#7AB2D3",
+        "light-main": "#BDBDBD",
+        "light-card": "#99A7B5",
+        "light-heading": "#6C87A8",
         "light-hover": "#84afc880",
         "light-hover-whole": "#6a93ab",
         "light-navigation-border": "#F5F4B3",
-        light: "#4A628A",
+        light: "#243E61",
 
         // Dark theme colors
-        "dark-main": "#181C14",
-        "dark-card": "#3C3D37",
-        "dark-heading": "#697565",
+        "dark-main": "#181c14",
+        "dark-card": "#2d3129",
+        "dark-heading": "#757772",
         "dark-hover": "#596b5980",
         "dark-hover-whole": "#555b52",
         "dark-navigation-border": "#706657",

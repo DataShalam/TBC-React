@@ -1,6 +1,5 @@
 "use client";
 
-import "./sort.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -56,7 +55,10 @@ export default function SortComponent() {
 
   return (
     <div className="sort-container">
-      <select className="sortingButtons" onChange={handleSortChange}>
+      <select
+        className="text-xl border-none cursor-pointer outline-none rounded-xl py-3 px-5 bg-light-heading dark:bg-dark-heading text-light dark:text-dark hover:bg-light-hover hover:dark:bg-dark-hover transition active:bg-light-hover active:dark:bg-dark-hover focus:bg-light-hover focus:dark:bg-dark-hover"
+        onChange={handleSortChange}
+      >
         <option value="">(Select Option)</option>
         <option value="price-asc">Sort by Price &uarr;</option>
         <option value="title-asc">Sort by Name &uarr;</option>
