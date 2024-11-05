@@ -3,6 +3,9 @@ import Link from "next/link";
 import { authenticate } from "../../lib/actions.js";
 
 export default function SignIn() {
+  const inputStyles =
+    "text-base p-4 border rounded-md outline-none border-light-heading bg-light-main text-light dark:border-dark-heading dark:bg-dark-main dark:text-dark hover:bg-light-hover transition placeholder:text-light placeholder:dark:text-dark";
+
   return (
     <div className="flex flex-col justify-center my-50vh mx-auto max-w-[30rem] p-6 -translate-y-1/2 rounded-xl bg-light-card dark:bg-dark-card text-light dark:text-dark">
       <div className="p-3 rounded-md text-center">
@@ -13,7 +16,7 @@ export default function SignIn() {
           <label htmlFor="email"></label>
           <input
             type="text"
-            className="text-base p-4 border rounded-md border-light-heading bg-light-main text-light dark:border-dark-heading dark:bg-dark-main dark:text-dark hover:bg-light-hover transition placeholder:text-light placeholder:dark:text-dark"
+            className={inputStyles}
             placeholder="Email"
             required
             name="email"
@@ -24,7 +27,7 @@ export default function SignIn() {
           <label htmlFor="pass"></label>
           <input
             type="password"
-            className="text-base p-4 border rounded-md border-light-heading bg-light-main text-light dark:border-dark-heading dark:bg-dark-main dark:text-dark hover:bg-light-hover transition placeholder:text-light placeholder:dark:text-dark"
+            className={inputStyles}
             placeholder="Password"
             required
             id="pass"
