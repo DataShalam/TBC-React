@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "../../components/post/Post";
 
-export default async function PostsPage() {
+export default async function postsPage() {
   const res = await fetch("https://dummyjson.com/posts", {
     cache: "no-store",
   });

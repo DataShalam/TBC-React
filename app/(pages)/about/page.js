@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function About() {
+export default function about() {
   return (
     <main className="w-[50rem] min-h[40rem] p-12 rounded-2xl my-0 mx-auto text-light dark:text-dark bg-light-card dark:bg-dark-card">
       <section className="p-6 rounded-xl mb-9 bg-light-heading dark:bg-dark-heading">

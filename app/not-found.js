@@ -8,7 +8,7 @@ export default function NotFound() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push("/");
+      router.push("/home");
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -61,7 +61,7 @@ export default function NotFound() {
       >
         If you don’t want to wait, click{" "}
         <Link
-          href="/"
+          href="/home"
           style={{ color: "#007bff", textDecoration: "underline" }}
         >
           here

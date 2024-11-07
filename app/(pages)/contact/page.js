@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Contact() {
+export default function contact() {
   const inputStyles =
     "w-full p-3 text-xl outline-none border-light-hover-whole placeholder-light dark:placeholder-dark text-light dark:text-dark dark:border-dark-hover-whole rounded-lg bg-light-heading dark:bg-dark-heading focus:bg-light-hover focus:dark:bg-dark-hover hover:bg-light-hover hover:dark:bg-dark-hover transition";
 

@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 import NotFoundPage from "../../../components/NotFound/NotFound.js";
 
-export default async function PostPage({ params }) {
+export default async function postPage({ params }) {
   const { postID } = params;
 
   const res = await fetch(`https://dummyjson.com/posts/${postID}`, {

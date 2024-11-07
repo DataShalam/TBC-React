@@ -5,7 +5,6 @@ import { ThemeContext } from "../../lib/ThemeProvider";
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  console.log(theme);
 
   const handleChange = (e) => {
     toggleTheme(e.target.value);
@@ -13,9 +12,6 @@ export default function ThemeToggle() {
 
   return (
     <div className="flex items-center">
-      <label htmlFor="theme-select" className="mr-2 text-xl font-semibold">
-        Theme:
-      </label>
       <select
         id="theme-select"
         value={theme}
