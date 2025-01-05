@@ -1,0 +1,25 @@
+{
+  "HeaderTop": {
+    "headerTopText": " New Offers This Weekend Only To Get 50%" 
+  },
+
+    "HeroSection": {
+      "heroTitle": "Top beauty brands, delivered to your door",
+      "heroDescription": "Join the Birchbox community — get access to top products. ",
+       "menuButtonText": "Get Started"
+    },
+
+    "Navigation": {
+      "about": "About Us",
+      "contact": "Cotnact",
+      "blog": "Blog",
+       "profile": "Profile",
+        "products": "Products"
+    }
+    ,
+    "Mode": {
+      "dark": "dark",
+      "light": "light",
+      "system": "system"
+    }
+  }
