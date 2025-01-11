@@ -1,18 +1,22 @@
-import React from "react";
+"use client";
 
-export default function contact() {
+import React from "react";
+import { useTranslations } from "next-intl";
+
+export default function Contact({ params }: { params: { locale: string } }) {
+  const t = useTranslations("Contact");
   const inputStyles =
     "w-full p-3 text-xl outline-none border-light-hover-whole placeholder-light dark:placeholder-dark text-light dark:text-dark dark:border-dark-hover-whole rounded-lg bg-light-heading dark:bg-dark-heading focus:bg-light-hover focus:dark:bg-dark-hover hover:bg-light-hover hover:dark:bg-dark-hover transition";
 
   return (
     <main className="w-[50rem] min-h-[40rem] p-12 rounded-2xl my-0 mx-auto text-light dark:text-dark bg-light-card dark:bg-dark-card">
       <div className="rounded-xl p-5 mb-9 bg-light-heading dark:bg-dark-heading">
-        <h1 className="text-5xl text-center">Contact</h1>
+        <h1 className="text-5xl text-center">{t("contact")}</h1>
       </div>
       <section className="flex flex-col items-center px-8 pt-8 pb-16">
         <div className="mb-5">
           <div className="text-3xl font-bold text-center text-light dark:text-dark">
-            Let’s Be in Touch
+            {t("beInTouch")}
           </div>
         </div>
         <div className="w-full">
@@ -23,7 +27,7 @@ export default function contact() {
                 type="text"
                 id="username"
                 className={inputStyles}
-                placeholder="UserName"
+                placeholder={t("userName")}
               />
             </div>
 
@@ -32,7 +36,7 @@ export default function contact() {
               <input
                 type="text"
                 id="email"
-                placeholder="Email"
+                placeholder={t("emale")}
                 className={inputStyles}
               />
             </div>
@@ -42,7 +46,7 @@ export default function contact() {
               <input
                 type="tel"
                 id="secondname"
-                placeholder="Number"
+                placeholder={t("number")}
                 className={inputStyles}
                 required
               />
@@ -52,7 +56,7 @@ export default function contact() {
               <label htmlFor="text"></label>
               <textarea
                 id="text"
-                placeholder="Text"
+                placeholder={t("text")}
                 className={`${inputStyles} resize-y`}
                 required
               />
@@ -62,7 +66,7 @@ export default function contact() {
               type="submit"
               className="border-none py-3 px-5 mt-7 text-base cursor-pointer font-bold rounded-lg text-white bg-light-hover-whole dark:bg-dark-hover-whole hover:bg-light-hover hover:dark:bg-dark-hover transition"
             >
-              Send
+              {t("send")}
             </button>
           </form>
         </div>

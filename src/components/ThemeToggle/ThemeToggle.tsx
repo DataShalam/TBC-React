@@ -2,13 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { useState, useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import useClickOutside from "../../hooks/useClickOutside";
-
-const themes = [
-  { value: "light", label: "Light" },
-  { value: "dark", label: "Dark" },
-  { value: "system", label: "System" },
-];
 
 const ThemeSwitcher = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -17,6 +12,13 @@ const ThemeSwitcher = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef(null);
+  const t = useTranslations("ThemeSwitcher");
+
+  const themes = [
+    { value: "light", label: t("light") },
+    { value: "dark", label: t("dark") },
+    { value: "system", label: t("system") },
+  ];
 
   useClickOutside(dropdownRef, () => setIsDropdownOpen(false));
 

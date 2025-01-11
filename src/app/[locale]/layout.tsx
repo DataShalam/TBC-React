@@ -2,8 +2,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+import { ThemeProvider } from "next-themes";
 import Header from "../../components/Header/Header";
-// import Footer from "../../components/Footer/Footer";
 import "../../globals.css";
 
 interface LocaleLayoutProps {
@@ -24,11 +25,16 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages({ locale });
+  if (!messages) {
+    throw new Error(`Messages not found for locale: ${locale}`);
+  }
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <Header />
-      {children}
+      <div className="flex flex-col min-h-full">
+        <Header />
+        {children}
+      </div>
     </NextIntlClientProvider>
   );
 }

@@ -4,12 +4,15 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
-import { AccessibilityOutline, ExitOutline } from "react-ionicons";
+import { AccessibilityOutline, ExitOutline, Language } from "react-ionicons";
+import { useTranslations } from "next-intl";
+import LanguageToggle from "../LanguageToggle/LanguageToggle";
 
 export default function Header() {
   const [authStatus, setAuthStatus] = useState(null);
   const [loading, setLoading] = useState(true);
   const locale = useLocale();
+  const t = useTranslations("Header");
   const unorderedList = "flex items-center gap-5 ml-8 list-none";
   const unorderedListItem =
     "text-xl font-bold cursor-pointer text-light dark:text-dark hover:text-light-hover-whole hover:dark:text-dark-hover-whole transition";
@@ -41,26 +44,29 @@ export default function Header() {
       <nav className="flex justify-between mx-10 my-0">
         <ul className={unorderedList}>
           <li className={`${unorderedListItem} uppercase`}>
-            <Link href={`/${locale}`}>Home</Link>
+            <Link href={`/${locale}`}>{t("home")}</Link>
           </li>
         </ul>
         {authStatus && (
           <ul className={`${unorderedList} uppercase`}>
             <li className={unorderedListItem}>
-              <Link href={`/${locale}/postsPage`}>Posts</Link>
+              <Link href={`/${locale}/postsPage`}>{t("posts")}</Link>
             </li>
             <li className={unorderedListItem}>
-              <Link href={`/${locale}/productsPage`}>Products</Link>
+              <Link href={`/${locale}/productsPage`}>{t("products")}</Link>
             </li>
             <li className={unorderedListItem}>
-              <Link href={`/${locale}/contact`}>Contact</Link>
+              <Link href={`/${locale}/contact`}>{t("contact")}</Link>
             </li>
             <li className={unorderedListItem}>
-              <Link href={`/${locale}/about`}>About</Link>
+              <Link href={`/${locale}/about`}>{t("about")}</Link>
             </li>
           </ul>
         )}
         <ul className={`${unorderedList} gap-5`}>
+          <li className="text-xl font-bold cursor-pointer text-light dark:text-dark">
+            <LanguageToggle />
+          </li>
           <li className="text-xl font-bold cursor-pointer text-light dark:text-dark">
             <ThemeToggle />
           </li>
@@ -83,7 +89,7 @@ export default function Header() {
             </li>
           ) : (
             <li className="text-xl font-bold cursor-pointer p-2 rounded-md text-light dark:text-dark bg-light-navigation-border dark:bg-dark-navigation-border hover:bg-opacity-50 hover:dark:bg-opacity-50 transition-colors">
-              <a href="/api/auth/login">Sign in</a>
+              <a href="/api/auth/login">{t("signIn")}</a>
             </li>
           )}
         </ul>
