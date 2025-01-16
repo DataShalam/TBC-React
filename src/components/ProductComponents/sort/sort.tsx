@@ -2,10 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useLocale } from "next-intl";
 
 export default function SortComponent() {
   const [sortBy, setSortBy] = useState("");
   const [order, setOrder] = useState("asc");
+  const locale = useLocale();
   const router = useRouter();
 
   function handleSortChange(e) {
@@ -50,7 +52,7 @@ export default function SortComponent() {
     }
 
     const searchTerm = newParams.get("q");
-    router.push(`/productsPage?${newParams.toString()}`);
+    router.push(`/${locale}/productsPage?${newParams.toString()}`);
   }
 
   return (

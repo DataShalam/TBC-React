@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 import LanguageToggle from "../LanguageToggle/LanguageToggle";
 
 export default function Header() {
-  const [authStatus, setAuthStatus] = useState(null);
+  const [authStatus, setAuthStatus] = useState(false);
   const [loading, setLoading] = useState(true);
   const locale = useLocale();
   const t = useTranslations("Header");
@@ -20,9 +20,10 @@ export default function Header() {
   useEffect(() => {
     const fetchSession = async () => {
       try {
-        const response = await fetch("/api/session");
+        const response = await fetch(`/${locale}/api/auth/status`);
         if (response.ok) {
           const { authenticated } = await response.json();
+
           setAuthStatus(authenticated);
         }
       } catch (error) {
@@ -34,6 +35,22 @@ export default function Header() {
 
     fetchSession();
   }, []);
+
+  const handleLogout = async () => {
+    const response = await fetch(`/${locale}/api/auth/logout`, {
+      method: "POST",
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.log("Logout failed. Error message:", data.message);
+    } else {
+      console.log("Logout successful:", data.message);
+      // Redirect to the login page
+      window.location.href = `/${locale}/login`;
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -83,13 +100,13 @@ export default function Header() {
           )}
           {authStatus ? (
             <li className={unorderedListItem}>
-              <a href="/api/auth/logout">
+              <div onClick={handleLogout}>
                 <ExitOutline color={"inherit"} height="48px" width="48px" />
-              </a>
+              </div>
             </li>
           ) : (
             <li className="text-xl font-bold cursor-pointer p-2 rounded-md text-light dark:text-dark bg-light-navigation-border dark:bg-dark-navigation-border hover:bg-opacity-50 hover:dark:bg-opacity-50 transition-colors">
-              <a href="/api/auth/login">{t("signIn")}</a>
+              <a href={`${locale}/login`}>{t("signIn")}</a>
             </li>
           )}
         </ul>

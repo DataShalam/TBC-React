@@ -3,10 +3,12 @@
 import { useDebounce } from "../../../hooks/debounce";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 
 export default function SearchComponent() {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search);
+  const locale = useLocale();
   const router = useRouter();
 
   useEffect(() => {
@@ -21,7 +23,7 @@ export default function SearchComponent() {
     const sortBy = newParams.get("sortBy");
     const order = newParams.get("order");
 
-    router.push(`/productsPage?${newParams.toString()}`);
+    router.push(`/${locale}/productsPage?${newParams.toString()}`);
   }, [debouncedSearch, router]);
 
   return (

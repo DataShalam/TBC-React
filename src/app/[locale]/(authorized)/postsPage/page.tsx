@@ -1,5 +1,5 @@
 import React from "react";
-import PostCard from "../../../components/BlogComponents/post/PostCard";
+import PostCard from "../../../../components/BlogComponents/post/PostCard";
 
 export default async function postsPage() {
   const res = await fetch("https://dummyjson.com/posts", {

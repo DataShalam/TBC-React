@@ -1,9 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 
 export default function DeleteProduct({ productId }) {
   const router = useRouter();
+  const locale = useLocale();
 
   const handleDelete = () => {
     const storedProducts = JSON.parse(
@@ -20,7 +22,7 @@ export default function DeleteProduct({ productId }) {
         JSON.stringify(updatedProducts)
       );
 
-      router.push("/productsPage");
+      router.push(`/${locale}/productsPage`);
     }
   };
 

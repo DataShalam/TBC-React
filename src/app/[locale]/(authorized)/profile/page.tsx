@@ -1,20 +1,26 @@
-import { getSession } from "@auth0/nextjs-auth0";
+import { createClient } from "../../../../utils/supabase/server";
+import { UserIcon } from "@heroicons/react/solid";
 
 export default async function profile() {
-  const sessionAuth = await getSession();
+  const supabase = await createClient();
+  const userResponse = await supabase.auth.getUser();
 
-  const { user } = sessionAuth;
+  const user = userResponse.data?.user;
 
   return (
     <div className="flex flex-col items-center p-6 rounded-lg shadow-lg max-w-xl mx-auto mt-10 bg-light-card dark:bg-dark-card text-light dark:text-dark">
-      <img
-        src={user.picture}
-        alt={`${user.given_name}'s profile`}
-        className="w-32 h-32 rounded-full mb-4"
-      />
+      {user?.user_metadata?.avatar_url ? (
+        <img
+          src={user?.user_metadata?.avatar_url}
+          alt="Avatar"
+          className="w-full h-full object-cover rounded-full"
+        />
+      ) : (
+        <UserIcon className="w-24 h-24 text-gray-500" />
+      )}
 
       <h1 className="text-5xl font-semibold ">
-        {user.given_name} {user.family_name}
+        {user?.user_metadata?.full_name || "User"}
       </h1>
 
       <div className="w-full h-1 border-b-2 my-2 border-light-navigation-border dark:border-dark-navigation-border"></div>
@@ -22,6 +28,9 @@ export default async function profile() {
       <p className="mt-3 text-xl text-light dark:text-dark">
         <span className="font-semibold">Email:</span>{" "}
         {user.email || "Not provided"}
+      </p>
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        {user.user_metadata?.user_name || "Username not set"}
       </p>
 
       <p className="mt-2 text-xl">
