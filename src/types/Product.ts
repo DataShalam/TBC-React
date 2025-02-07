@@ -13,4 +13,5 @@ export interface Product {
   Weight: number;
   Reviews: string[];
   Images: string[];
+  Created_By: string;
 }

@@ -1,138 +1,119 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+"use client";
 
-export default function EditProduct({ productId }) {
-  const router = useRouter();
+import { useState } from "react";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
+export default function EditProduct({
+  productID,
+  title,
+  description,
+  price,
+  brand,
+}: {
+  productID: number;
+  title: string;
+  description: string;
+  price: number;
+  brand: string;
+}) {
   const [showForm, setShowForm] = useState(false);
   const [editedProduct, setEditedProduct] = useState({
-    title: "",
-    description: "",
-    price: "",
-    brand: "",
+    title: title,
+    description: description,
+    price: price,
+    brand: brand,
   });
   const inputStyles =
-    "p-4 text-base border border-white rounded-md w-full outline-none focus:border-light-hover-whole focus:dark:border text-black";
+    "p-4 text-base border border-white rounded-md w-full outline-none focus:border-light-hover-whole focus:dark:border text-light dark:text-dark";
 
-  // Function to fetch product from localStorage and update state
-  const fetchProductData = () => {
-    const storedData = JSON.parse(localStorage.getItem("products__default"));
-
-    if (storedData && Array.isArray(storedData)) {
-      const productToEdit = storedData.find(
-        (product) => String(product.id) === String(productId)
-      );
-
-      if (productToEdit) {
-        setEditedProduct({
-          title: productToEdit.title,
-          description: productToEdit.description,
-          price: productToEdit.price,
-          brand: productToEdit.brand,
-        });
-      }
-    }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setEditedProduct((prev) => ({ ...prev, [name]: value }));
   };
 
-  useEffect(() => {
-    fetchProductData();
-  }, [productId]);
-
-  const handleFormSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const supabase = createClientComponentClient();
 
-    const storedData = JSON.parse(localStorage.getItem("products__default"));
+    try {
+      const { data, error } = await supabase
+        .from("Products")
+        .update({
+          Title: editedProduct.title,
+          Description: editedProduct.description,
+          Price: editedProduct.price,
+          Brand: editedProduct.brand,
+        })
+        .eq("Id", productID)
+        .select();
 
-    if (storedData && Array.isArray(storedData)) {
-      const productIndex = storedData.findIndex(
-        // ar vparsavdi amas da sheiwira chemi nervebi
-        (product) => String(product.id) === String(productId)
-      );
+      if (error) throw error;
 
-      if (productIndex !== -1) {
-        // Update the product details
-        storedData[productIndex] = {
-          ...storedData[productIndex],
-          title: editedProduct.title,
-          description: editedProduct.description,
-          price: parseFloat(editedProduct.price),
-          brand: editedProduct.brand,
-        };
-
-        localStorage.setItem("products__default", JSON.stringify(storedData));
-
-        setShowForm(false);
-        fetchProductData();
-      }
+      setShowForm(false);
+    } catch (error) {
+      console.error("Error updating product:", error);
     }
   };
 
   return (
-    <>
-      <div className="flex justify-center">
+    <div>
+      <div className="flex justify-start">
         <button
           className="border-none text-base py-2 px-4 rounded-md cursor-pointer bg-light-heading dark:bg-dark-heading hover:bg-light-hover-whole hover:dark:bg-dark-hover-whole transition"
-          onClick={() => (showForm ? setShowForm(false) : setShowForm(true))}
+          onClick={() => setShowForm((prev) => !prev)}
         >
           Edit Product
         </button>
       </div>
-
       {showForm && (
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-10 bg-black bg-opacity-70">
           <form
             className="flex flex-col w-[90%] max-w-[400px] z-20 p-7 rounded-2xl gap-3 bg-light-card dark:bg-dark-card"
-            onSubmit={handleFormSubmit}
+            onSubmit={handleSubmit}
           >
             <input
               type="text"
+              name="title"
               placeholder="Product Name"
               value={editedProduct.title}
-              onChange={(e) =>
-                setEditedProduct({ ...editedProduct, title: e.target.value })
-              }
+              onChange={handleInputChange}
               className={inputStyles}
-              required
+              autoFocus
             />
             <input
               type="text"
+              name="description"
               placeholder="Product Description"
               value={editedProduct.description}
-              onChange={(e) =>
-                setEditedProduct({
-                  ...editedProduct,
-                  description: e.target.value,
-                })
-              }
+              onChange={handleInputChange}
               className={inputStyles}
-              required
             />
             <input
               type="text"
+              name="brand"
               placeholder="Product Brand"
               value={editedProduct.brand}
-              onChange={(e) =>
-                setEditedProduct({ ...editedProduct, brand: e.target.value })
-              }
+              onChange={handleInputChange}
               className={inputStyles}
-              required
             />
             <input
               type="number"
+              name="price"
               placeholder="Product Price"
               value={editedProduct.price}
-              onChange={(e) =>
-                setEditedProduct({ ...editedProduct, price: e.target.value })
-              }
+              onChange={handleInputChange}
               className={inputStyles}
-              required
+              min="0"
+              step="0.01"
             />
+
             <button
               type="submit"
               className="border-none cursor-pointer text-base font-semibold py-3 w-full rounded-md bg-light-heading dark:bg-dark-heading text-light dark:text-dark hover:bg-light-hover hover:dark:bg-dark-hover transition"
             >
               Save Changes
             </button>
+
             <button
               type="button"
               className="border-none cursor-pointer text-base font-semibold py-3 w-full rounded-md text-white bg-red-500 hover:bg-red-700"
@@ -143,6 +124,6 @@ export default function EditProduct({ productId }) {
           </form>
         </div>
       )}
-    </>
+    </div>
   );
 }

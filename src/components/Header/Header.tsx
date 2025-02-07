@@ -4,18 +4,16 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
-import { AccessibilityOutline, ExitOutline, Language } from "react-ionicons";
+import { AccessibilityOutline, ExitOutline, Menu, Close } from "react-ionicons";
 import { useTranslations } from "next-intl";
 import LanguageToggle from "../LanguageToggle/LanguageToggle";
 
 export default function Header() {
   const [authStatus, setAuthStatus] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const locale = useLocale();
   const t = useTranslations("Header");
-  const unorderedList = "flex items-center gap-5 ml-8 list-none";
-  const unorderedListItem =
-    "text-xl font-bold cursor-pointer text-light dark:text-dark hover:text-light-hover-whole hover:dark:text-dark-hover-whole transition";
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -23,7 +21,6 @@ export default function Header() {
         const response = await fetch(`/${locale}/api/auth/status`);
         if (response.ok) {
           const { authenticated } = await response.json();
-
           setAuthStatus(authenticated);
         }
       } catch (error) {
@@ -34,83 +31,177 @@ export default function Header() {
     };
 
     fetchSession();
-  }, []);
+  }, [locale]);
 
   const handleLogout = async () => {
     const response = await fetch(`/${locale}/api/auth/logout`, {
       method: "POST",
     });
-
     const data = await response.json();
 
     if (!response.ok) {
       console.log("Logout failed. Error message:", data.message);
     } else {
       console.log("Logout successful:", data.message);
-      // Redirect to the login page
       window.location.href = `/${locale}/login`;
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <div>Loading...</div>;
 
   return (
-    <header className="p-3 mb-16 text-center border-b-2 border-light-navigation-border dark:border-dark-navigation-border">
-      <nav className="flex justify-between mx-10 my-0">
-        <ul className={unorderedList}>
-          <li className={`${unorderedListItem} uppercase`}>
-            <Link href={`/${locale}`}>{t("home")}</Link>
-          </li>
+    <header className="p-4 mb-16 text-center border-b-2 border-light-navigation-border dark:border-dark-navigation-border">
+      <nav className="flex justify-between items-center mx-6">
+        <div className="text-xl font-bold uppercase text-light dark:text-dark">
+          <Link href={`/${locale}`}>{t("home")}</Link>
+        </div>
+
+        <button
+          className="md:hidden text-light dark:text-dark"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? (
+            <Close color={"inherit"} height="36px" width="36px" />
+          ) : (
+            <Menu color={"inherit"} height="36px" width="36px" />
+          )}
+        </button>
+
+        <ul className="hidden md:flex items-center gap-6 text-xl font-bold">
+          {authStatus && (
+            <>
+              <li>
+                <Link
+                  href={`/${locale}/postsPage`}
+                  className="hover:text-gray-600 dark:hover:text-gray-400"
+                >
+                  {t("posts")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/productsPage`}
+                  className="hover:text-gray-600 dark:hover:text-gray-400"
+                >
+                  {t("products")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/contact`}
+                  className="hover:text-gray-600 dark:hover:text-gray-400"
+                >
+                  {t("contact")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/about`}
+                  className="hover:text-gray-600 dark:hover:text-gray-400"
+                >
+                  {t("about")}
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
-        {authStatus && (
-          <ul className={`${unorderedList} uppercase`}>
-            <li className={unorderedListItem}>
-              <Link href={`/${locale}/postsPage`}>{t("posts")}</Link>
-            </li>
-            <li className={unorderedListItem}>
-              <Link href={`/${locale}/productsPage`}>{t("products")}</Link>
-            </li>
-            <li className={unorderedListItem}>
-              <Link href={`/${locale}/contact`}>{t("contact")}</Link>
-            </li>
-            <li className={unorderedListItem}>
-              <Link href={`/${locale}/about`}>{t("about")}</Link>
-            </li>
-          </ul>
-        )}
-        <ul className={`${unorderedList} gap-5`}>
-          <li className="text-xl font-bold cursor-pointer text-light dark:text-dark">
+
+        <ul className="hidden md:flex items-center gap-5">
+          <li>
             <LanguageToggle />
           </li>
-          <li className="text-xl font-bold cursor-pointer text-light dark:text-dark">
+          <li>
             <ThemeToggle />
           </li>
           {authStatus && (
-            <li className={unorderedListItem}>
+            <li>
               <Link href={`/${locale}/profile`}>
                 <AccessibilityOutline
                   color={"inherit"}
-                  height="48px"
-                  width="48px"
+                  height="32px"
+                  width="32px"
                 />
               </Link>
             </li>
           )}
           {authStatus ? (
-            <li className={unorderedListItem}>
-              <div onClick={handleLogout}>
-                <ExitOutline color={"inherit"} height="48px" width="48px" />
+            <li>
+              <div onClick={handleLogout} className="cursor-pointer">
+                <ExitOutline color={"inherit"} height="32px" width="32px" />
               </div>
             </li>
           ) : (
-            <li className="text-xl font-bold cursor-pointer p-2 rounded-md text-light dark:text-dark bg-light-navigation-border dark:bg-dark-navigation-border hover:bg-opacity-50 hover:dark:bg-opacity-50 transition-colors">
-              <a href={`${locale}/login`}>{t("signIn")}</a>
+            <li>
+              <Link
+                href={`/${locale}/login`}
+                className="px-4 py-2 rounded-md bg-light-navigation-border dark:bg-dark-navigation-border hover:bg-opacity-50 dark:hover:bg-opacity-50 transition-colors"
+              >
+                {t("signIn")}
+              </Link>
             </li>
           )}
         </ul>
       </nav>
+
+      {isMobileMenuOpen && (
+        <div className="md:hidden mt-4 flex flex-col items-center gap-4 text-xl font-bold text-light dark:text-dark">
+          {authStatus && (
+            <>
+              <Link
+                href={`/${locale}/postsPage`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("posts")}
+              </Link>
+              <Link
+                href={`/${locale}/productsPage`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("products")}
+              </Link>
+              <Link
+                href={`/${locale}/contact`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("contact")}
+              </Link>
+              <Link
+                href={`/${locale}/about`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("about")}
+              </Link>
+            </>
+          )}
+          <LanguageToggle />
+          <ThemeToggle />
+          {authStatus && (
+            <Link
+              href={`/${locale}/profile`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <AccessibilityOutline
+                color={"inherit"}
+                height="32px"
+                width="32px"
+              />
+            </Link>
+          )}
+          {authStatus ? (
+            <div onClick={handleLogout} className="cursor-pointer">
+              <ExitOutline color={"inherit"} height="32px" width="32px" />
+            </div>
+          ) : (
+            <Link
+              href={`/${locale}/login`}
+              className="px-4 py-2 rounded-md bg-light-navigation-border dark:bg-dark-navigation-border hover:bg-opacity-50 dark:hover:bg-opacity-50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {t("signIn")}
+            </Link>
+          )}
+        </div>
+      )}
     </header>
   );
 }

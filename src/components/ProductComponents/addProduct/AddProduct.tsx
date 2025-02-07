@@ -55,14 +55,13 @@ export default function AddProduct() {
         Created_By: userId,
       };
       // Insert product into Supabase
-      // const { data, error } = await supabase
-      //   .from("Products")
-      //   .insert([productToAdd]);
+      const { data, error } = await supabase
+        .from("Products")
+        .insert([productToAdd]);
 
       // if (error) throw error;
       // console.log("✅ Product added:", data);
 
-      // Upload images (if any)
       if (newProduct.images.length > 0) {
         const uploadedImages = await uploadImages(newProduct.images);
         console.log("🖼 Images uploaded:", uploadedImages);
@@ -144,9 +143,9 @@ export default function AddProduct() {
       </div>
 
       {showForm && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-10 bg-black bg-opacity-70">
+        <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-10 bg-black bg-opacity-70 p-4">
           <form
-            className="flex flex-col w-[90%] max-w-[400px] z-20 p-7 rounded-2xl gap-3 bg-light-card dark:bg-dark-card"
+            className="flex flex-col w-full max-w-lg z-20 p-7 rounded-2xl gap-3 bg-light-card dark:bg-dark-card"
             onSubmit={handleFormSubmit}
           >
             <input
@@ -208,7 +207,7 @@ export default function AddProduct() {
               </div>
 
               {/* Tag Input Field */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mt-2">
                 <input
                   type="text"
                   placeholder="Enter tag"

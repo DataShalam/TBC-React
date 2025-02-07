@@ -76,7 +76,7 @@ export function ContactForm() {
   };
 
   const inputStyles =
-    "w-full p-3 text-xl outline-none border placeholder-light dark:placeholder-dark text-light dark:text-dark rounded-lg bg-light-heading dark:bg-dark-heading transition";
+    "w-full p-3 text-base md:text-lg lg:text-xl outline-none border placeholder-light dark:placeholder-dark text-light dark:text-dark rounded-lg bg-light-heading dark:bg-dark-heading transition";
   const errorStyles = "border-red-500";
 
   return (
@@ -158,7 +158,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="border-none py-3 px-5 mt-7 text-base cursor-pointer font-bold rounded-lg text-white bg-light-hover-whole dark:bg-dark-hover-whole hover:bg-light-hover hover:dark:bg-dark-hover transition"
+        className="border-none py-3 px-5 mt-7 text-base md:text-lg lg:text-xl cursor-pointer font-bold rounded-lg text-white bg-light-hover-whole dark:bg-dark-hover-whole hover:bg-light-hover hover:dark:bg-dark-hover transition"
       >
         {t("send")}
       </button>

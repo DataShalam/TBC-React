@@ -22,15 +22,16 @@ export default async function ProductsPage({ searchParams }) {
   const { data: products, error } = await query;
 
   return (
-    <div className="flex flex-col items-center gap-6 mx-auto mt-0 mb-24">
+    <div className="flex flex-col items-center gap-4 md:gap-6 mx-4 md:mx-auto mt-0 mb-12 md:mb-24">
       <ProductsHeader />
-      <div className="flex justify-between items-center w-[93rem] rounded-xl p-4 mb-4 bg-light-card dark:bg-dark-card">
+
+      <div className="flex flex-col md:flex-row justify-between items-center w-full md:w-[93rem] gap-4 rounded-xl p-3 md:p-4 mb-2 md:mb-4 bg-light-card dark:bg-dark-card">
         <SortComponent />
         <AddProduct />
         <SearchComponent />
       </div>
 
-      <div className="grid grid-cols-3 gap-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 w-full md:w-auto">
         {products ? (
           products.map((item) => <Product item={item} key={item.Id} />)
         ) : (

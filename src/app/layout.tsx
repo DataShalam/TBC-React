@@ -15,7 +15,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className=" h-full">
+      <body className="h-full">
         <div className="flex flex-col min-h-full">
           <UserProvider>
             <ThemeProvider defaultTheme="system" enableSystem attribute="class">

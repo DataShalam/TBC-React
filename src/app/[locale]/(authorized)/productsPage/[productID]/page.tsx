@@ -1,5 +1,8 @@
 import { createClient } from "../../../../../utils/supabase/server";
 import { Product } from "../../../../../types/Product";
+import ProductImages from "./ProductImages";
+import EditProduct from "../../../../../components/ProductComponents/EditProduct/EditProduct";
+import DeleteProduct from "../../../../../components/ProductComponents/DeleteProduct/DeleteProduct";
 
 export default async function ProductDetail({ params }) {
   const supabaseConnection = await createClient();
@@ -16,74 +19,79 @@ export default async function ProductDetail({ params }) {
 
   return (
     <>
-      <div className="w-[60vw] my-0 mx-auto p-9 mb-12 rounded-2xl flex justify-between gap-8 text-light dark:text-dark bg-light-card dark:bg-dark-card">
+      <div className="w-[90vw] md:w-[60vw] mx-auto p-4 md:p-9 mb-6 md:mb-12 rounded-xl md:rounded-2xl flex flex-col md:flex-row justify-between gap-4 md:gap-8 text-light dark:text-dark bg-light-card dark:bg-dark-card">
         {product === null ? (
           <div>loading...</div>
         ) : (
           <>
-            <div className="flex flex-col justify-start">
-              <h1 className="text-4xl p-5  rounded-xl bg-light-hover-whole dark:bg-dark-hover-whole">
+            <div className="flex flex-col justify-start w-full md:w-auto">
+              <h1 className="text-2xl md:text-4xl p-3 md:p-5 rounded-xl bg-light-hover-whole dark:bg-dark-hover-whole">
                 {product.Title}
               </h1>
-              <p className="text-xl my-3 mx-0">{product.Description}</p>
-              <div className="text-xl my-4 mx-0">
+
+              <p className="text-base md:text-xl my-2 md:my-3">
+                {product.Description}
+              </p>
+
+              <div className="text-base md:text-xl my-3 md:my-4 flex flex-wrap gap-2">
                 Tags:{" "}
                 {product.Tags?.map((tag) => (
                   <span
                     key={tag}
-                    className="py-2 px-3 mr-2 rounded-md bg-light-heading dark:bg-dark-heading text-light dark:text-dark"
+                    className="py-1 md:py-2 px-2 md:px-3 rounded-md bg-light-heading dark:bg-dark-heading text-light dark:text-dark"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <p className="text-xl my-3 mx-0">
-                Category:{" "}
-                <span className="font-bold">
-                  {product.Category ? product.Category : ""}
-                </span>
-              </p>
-              <p className="text-xl my-3 mx-0">
-                Weight:{" "}
-                <span className="font-bold">
-                  {product.Weight ? product.Weight : ""}kg
-                </span>
-              </p>
-              <p className="text-xl my-3 mx-0">
-                Price:
-                <span className="font-bold"> ${product.Price}</span>
-              </p>
-            </div>
-            <div className="flex flex-col items-center gap-4">
-              <img
-                src={product.Images ? product.Images[0] : defaultImagePath}
-                alt={product.Title}
-                className="w-[30rem] h-auto rounded-2xl object-contain"
-              />
-              <div className="flex gap-4 overflow-x-scroll max-w-xs snap-x snap-mandatory scroll-px-4 scrollbar-hide">
-                {product.Images?.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Product image ${index + 1}`}
-                    className="w-[6rem] h-auto rounded-lg object-contain snap-center"
-                  />
-                ))}
+              <div className="space-y-2 md:space-y-3">
+                <p className="text-base md:text-xl">
+                  Category:{" "}
+                  <span className="font-bold">{product.Category || ""}</span>
+                </p>
+                <p className="text-base md:text-xl">
+                  Weight:{" "}
+                  <span className="font-bold">{product.Weight || ""}kg</span>
+                </p>
+                <p className="text-base md:text-xl">
+                  Price: <span className="font-bold">${product.Price}</span>
+                </p>
               </div>
+
+              <div className="flex justify-start gap-3 md:gap-4 mt-4">
+                <EditProduct
+                  productID={product.Id}
+                  title={product.Title}
+                  description={product.Description}
+                  price={product.Price}
+                  brand={product.Brand}
+                />
+                <DeleteProduct productId={product.Id} />
+              </div>
+            </div>
+
+            <div className="w-full md:w-auto mt-4 md:mt-0">
+              <ProductImages
+                images={product.Images || []}
+                title={product.Title}
+              />
             </div>
           </>
         )}
       </div>
-      <div className="w-[60vw] my-0 mx-auto p-9 mb-5 rounded-2xl flex-row justify-between gap-8 text-light dark:text-dark bg-light-card dark:bg-dark-card">
-        <h3 className="text-center text-4xl mb-4">Reviews</h3>
-        <div className="flex flex-col gap-4">
+
+      <div className="w-[90vw] md:w-[60vw] mx-auto p-4 md:p-9 mb-4 md:mb-5 rounded-xl md:rounded-2xl text-light dark:text-dark bg-light-card dark:bg-dark-card">
+        <h3 className="text-center text-2xl md:text-4xl mb-3 md:mb-4">
+          Reviews
+        </h3>
+        <div className="flex flex-col gap-3 md:gap-4">
           {product.Reviews?.map((review, index) => (
             <div
               key={index}
-              className="flex flex-col p-5 gap-4 rounded-2xl bg-light-hover-whole dark:bg-dark-hover-whole text-light dark:text-dark"
+              className="flex flex-col p-3 md:p-5 gap-3 md:gap-4 rounded-xl md:rounded-2xl bg-light-hover-whole dark:bg-dark-hover-whole text-light dark:text-dark"
             >
-              <p className="text-xl">{review}</p>
+              <p className="text-base md:text-xl">{review}</p>
             </div>
           ))}
         </div>
