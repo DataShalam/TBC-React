@@ -7,7 +7,7 @@ import { Post } from "../../../types/Post";
 
 export default function PostCard({ post }: { post: Post }) {
   return (
-    <Link key={post.id} href={`/postsPage/${post.id}`}>
+    <Link key={post.id} href={`postsPage/${post.id}`}>
       <div
         key={post.id}
         className="flex flex-col items-center justify-between gap-5 max-w-[35rem] p-5 rounded-2xl h-full bg-light-card dark:bg-dark-card text-light dark:text-dark hover:-translate-y-3 transition-transform duration-200"

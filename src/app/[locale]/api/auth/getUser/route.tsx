@@ -26,9 +26,13 @@ export async function GET() {
     } = await supabase.auth.getSession();
 
     if (session) {
-      return new Response(JSON.stringify({ authenticated: true }), {
-        status: 200,
-      });
+      const userId = session.user.id;
+      return new Response(
+        JSON.stringify({ authenticated: true, userId: userId }),
+        {
+          status: 200,
+        }
+      );
     } else {
       return new Response(JSON.stringify({ authenticated: false }), {
         status: 200,

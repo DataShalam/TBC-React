@@ -1,5 +1,6 @@
 import React from "react";
 import PostCard from "../../../../components/BlogComponents/post/PostCard";
+import PostsHeader from "../../../../components/UseLocaleComponents/Headers/PostsHeader";
 
 export default async function postsPage() {
   const res = await fetch("https://dummyjson.com/posts", {
@@ -10,9 +11,7 @@ export default async function postsPage() {
 
   return (
     <div className="flex flex-col items-center mx-auto mt-0 mb-16 gap-7">
-      <h1 className="text-5xl mb-5 text-light dark:text-dark drop-shadow-[0_0_1rem_rgba(236,223,204,0.8)]">
-        Posts
-      </h1>
+      <PostsHeader />
 
       {posts?.length === 0 ? (
         <div>

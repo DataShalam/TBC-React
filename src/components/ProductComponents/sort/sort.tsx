@@ -10,48 +10,30 @@ export default function SortComponent() {
   const locale = useLocale();
   const router = useRouter();
 
+  const sortOptions = {
+    "price-asc": { field: "Price", order: "asc" },
+    "price-desc": { field: "Price", order: "desc" },
+    "title-asc": { field: "Title", order: "asc" },
+    "title-desc": { field: "Title", order: "desc" },
+  };
+
   function handleSortChange(e) {
-    const selectedSortBy = e.target.value;
-    let sortByField = "";
-    let sortOrder = "";
+    const selectedSort = e.target.value;
+    const { field = "", order = "asc" } = sortOptions[selectedSort] || {};
 
-    switch (selectedSortBy) {
-      case "price-asc":
-        sortByField = "price";
-        sortOrder = "asc";
-        break;
-      case "price-desc":
-        sortByField = "price";
-        sortOrder = "desc";
-        break;
-      case "title-asc":
-        sortByField = "title";
-        sortOrder = "asc";
-        break;
-      case "title-desc":
-        sortByField = "title";
-        sortOrder = "desc";
-        break;
-      default:
-        sortByField = "";
-        sortOrder = "asc";
-        break;
-    }
-
-    setSortBy(sortByField);
-    setOrder(sortOrder);
+    setSortBy(field);
+    setOrder(order);
 
     const newParams = new URLSearchParams(window.location.search);
 
-    if (sortByField) {
-      newParams.set("sortBy", sortByField);
-      newParams.set("order", sortOrder);
+    if (field) {
+      newParams.set("sortBy", field);
+      newParams.set("order", order);
     } else {
       newParams.delete("sortBy");
       newParams.delete("order");
     }
 
-    const searchTerm = newParams.get("q");
     router.push(`/${locale}/productsPage?${newParams.toString()}`);
   }
 
@@ -62,10 +44,12 @@ export default function SortComponent() {
         onChange={handleSortChange}
       >
         <option value="">(Select Option)</option>
-        <option value="price-asc">Sort by Price &uarr;</option>
-        <option value="title-asc">Sort by Name &uarr;</option>
-        <option value="price-desc">Sort by Price &darr;</option>
-        <option value="title-desc">Sort by Name &darr;</option>
+        {Object.entries(sortOptions).map(([key, { field, order }]) => (
+          <option key={key} value={key}>
+            Sort by {field.charAt(0).toUpperCase() + field.slice(1)}{" "}
+            {order === "asc" ? "↑" : "↓"}
+          </option>
+        ))}
       </select>
     </div>
   );

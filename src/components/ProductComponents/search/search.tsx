@@ -15,9 +15,9 @@ export default function SearchComponent() {
     const newParams = new URLSearchParams(window.location.search);
 
     if (debouncedSearch) {
-      newParams.set("q", debouncedSearch);
+      newParams.set("title", debouncedSearch);
     } else {
-      newParams.delete("q");
+      newParams.delete("title");
     }
 
     const sortBy = newParams.get("sortBy");

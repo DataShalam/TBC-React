@@ -15,13 +15,15 @@
   },
 
   "Contact": {
-    "contact": "Contact",
-    "beInTouch": "Let’s Be in Touch",
     "userName": "User Name",
-    "emale": "Email",
+    "email": "Email",
     "number": "Phone Number",
     "text": "Text",
-    "send": "Send"
+    "send": "Send",
+    "errorUserName": "Please enter your name",
+    "errorEmail": "Please enter a valid email address",
+    "errorNumber": "Please enter a valid phone number",
+    "errorText": "Please enter your message"
   },
 
   "About": {
@@ -33,5 +35,12 @@
     "heroTitle": "Welcome to OmniMarket",
     "heroSectionContent": "Join our fitness community and get access to exclusive workout plans, nutrition guides, and personalized coaching. Whether you're a beginner or a seasoned athlete, we have something for everyone. Stay motivated and achieve your fitness goals with OmniMarket.",
     "subscription": "Subscribe now!"
+  },
+
+  "Headers": {
+    "products": "Products",
+    "posts": "Posts",
+    "contact": "Contact",
+    "beInTouch": "Let’s Be in Touch"
   }
 }

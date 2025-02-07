@@ -2,8 +2,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
-import { ThemeProvider } from "next-themes";
 import Header from "../../components/Header/Header";
 import "../../globals.css";
 
@@ -18,7 +16,7 @@ export default async function LocaleLayout({
   children,
   params,
 }: LocaleLayoutProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!routing.locales.includes(locale as "en" | "ka")) {
     notFound();

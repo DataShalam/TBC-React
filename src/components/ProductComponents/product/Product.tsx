@@ -18,7 +18,7 @@ export default function Product({ item }) {
         alt={item.Title}
         width={450}
         height={0}
-        className="my-3 mx-auto rounded-xl"
+        className="object-cover my-3 mx-auto rounded-xl max-w-[450px] max-h-[300px] min-h-[300px]"
       />
       <div className="flex flex-col items-center grow p-5">
         <h2 className="text-2xl mb-3 p-5 rounded-xl bg-light-heading text-light dark:bg-dark-heading dark:text-dark">

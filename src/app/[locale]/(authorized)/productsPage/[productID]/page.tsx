@@ -3,10 +3,11 @@ import { Product } from "../../../../../types/Product";
 
 export default async function ProductDetail({ params }) {
   const supabaseConnection = await createClient();
+  const { productID } = await params;
   const { data, error } = await supabaseConnection
     .from("Products")
     .select(`*`)
-    .eq("Id", params.productID);
+    .eq("Id", productID);
 
   const product: Product = data[0];
 
